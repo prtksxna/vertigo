@@ -49,7 +49,7 @@ var Game = {
         this.canvas.clearRect(0, 0, this.w, this.h); // Clear Canvas
 
         // FPS Logging & Points
-        var fps = 1000/this.delta;
+        var fps = Math.round(1000/this.delta);
         this.canvas.font = "bold 12px sans-serif";
         this.canvas.fillText("FPS: " + fps, 10, 20);
         this.canvas.fillText("Points: " + this.points, 10, 30);
