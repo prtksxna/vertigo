@@ -33,8 +33,8 @@ var Player = function(game,x,y){
     this.w = 10;
     this.h = 10;
     this.momentum = 0;
-    this.speed = 0.006; // Only X Speed
-    this.friction = 0.003;
+    this.speed = 0.012; // Only X Speed
+    this.friction = 0.006;
     this.game = game;
     this.draw();
     return this;
