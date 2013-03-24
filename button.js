@@ -45,13 +45,14 @@ var Button = function(game,y){
 
     this.taken = function(){
         if(this.game.speed < this.jump){
-            this.game.speed = this.jump;
+            var boost = this.jump + (this.jump * ((this.game.combo_hits * 0.1)));
+            this.game.speed = boost;
         }
 
         if(this.game.combo_color == this.color){
             this.game.combo_hits += 1;
         }else{
-            this.game.combo_hits = 0;
+            this.game.combo_hits = 1;
             this.game.combo_color = this.color;
         }
 
