@@ -58,11 +58,12 @@ var Game = {
     },
 
     updateButtons: function(){
+        var speedDelta = this.speed * this.delta;
         for(var i = 0; i < this.buttons.length; i++){
             var p = this.player;
             var b = this.buttons[i];
 
-            this.buttons[i].y += this.speed * this.delta;
+            this.buttons[i].y += speedDelta;
             this.buttons[i].draw();
 
             if((p.y >= b.y && p.y <= (b.y + b.h)) || (b.y >= p.y && b.y <= (p.y + p.w ))){
