@@ -17,9 +17,7 @@ var Button = function(game,y){
 
     this.taken = function(){
         this.game.speed = this.jump;
-        var points = parseInt($("#log1").html()) + 1;
-        $("#log1").html(points);
-        this.game.points = points;
+        this.game.points += 1;
         this.destroy();
     }
 

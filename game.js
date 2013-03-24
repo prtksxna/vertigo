@@ -37,7 +37,6 @@ var Game = {
         var then = this.now;
         this.now = new Date().getTime();
         this.delta = this.now - then;
-        $("#fps").html(Math.floor(1000/this.delta)).bind(this);
 
         this.update();
 
