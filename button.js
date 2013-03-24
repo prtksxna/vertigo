@@ -44,9 +44,13 @@ var Button = function(game,y){
     }
 
     this.taken = function(){
-        if(this.game.speed < this.jump){
-            var boost = this.jump + (this.jump * ((this.game.combo_hits * 0.1)));
-            this.game.speed = boost;
+        if(this.jump < 0){
+            this.game.speed = this.jump;
+        }else{
+            if(this.game.speed < this.jump){
+                var boost = this.jump + (this.jump * ((this.game.combo_hits * 0.1)));
+                this.game.speed = boost;
+            }
         }
 
         if(this.game.combo_color == this.color){
@@ -56,7 +60,7 @@ var Button = function(game,y){
             this.game.combo_color = this.color;
         }
 
-        this.game.points += 1;
+        this.game.points += this.h * 100;
         this.destroy();
     }
 

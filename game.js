@@ -45,6 +45,8 @@ var Game = {
         this.now = new Date().getTime();
         this.delta = this.now - then;
 
+        this.points += this.delta;
+
         this.update();
 
         window.setTimeout(function(){this.stepper()}.bind(this), 1);
