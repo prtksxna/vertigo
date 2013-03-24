@@ -21,7 +21,9 @@ var Game = {
         this.setupCanvas();
         this.player = new Player(this,100,200)
         this.buttons = [];
+
         this.generateButtons(100,this.h);
+        this.generateButtons(100,-this.h);
 
         this.now = new Date().getTime();
         this.timer = window.setTimeout(function(){this.stepper()}.bind(this), 1);
@@ -48,31 +50,43 @@ var Game = {
     update: function(){
         this.canvas.clearRect(0, 0, this.w, this.h); // Clear Canvas
 
-        // FPS Logging & Points
+        this.updateSpeed();
+        this.updateButtons();
+        this.player.react(); // Make player react to event
+
+       // FPS Logging & Points
         var fps = Math.round(1000/this.delta);
         this.canvas.font = "bold 12px sans-serif";
         this.canvas.fillText("FPS: " + fps, 10, 20);
         this.canvas.fillText("Points: " + this.points, 10, 30);
+        this.canvas.fillText("Height: " + this.height, 10, 40);
+        this.canvas.fillText("Max Height: " + this.max_height, 10, 50);
 
-        this.updateSpeed();
-        this.updateButtons();
-        this.player.react(); // Make player react to event
+
     },
 
     updateSpeed: function(){
         this.speed -= this.gravity * this.delta;
         this.height += this.speed;
+
+        if (this.height > this.max_height){
+            this.max_height = this.height - (this.height%100) + 100;
+            this.generateButtons(50,-500);
+        }
     },
 
     updateButtons: function(){
         var speedDelta = this.speed * this.delta;
         for(var i = 0; i < this.buttons.length; i++){
+
             var p = this.player;
             var b = this.buttons[i];
 
+            // Move the buttons
             this.buttons[i].y += speedDelta;
             this.buttons[i].draw();
 
+            // check for collisions
             if((p.y >= b.y && p.y <= (b.y + b.h)) || (b.y >= p.y && b.y <= (p.y + p.w ))){
                 if((p.x >= b.x && p.x <= (b.x + b.w)) || (b.x >= p.x && b.x <= (p.x + p.h ))){
                     b.taken();
