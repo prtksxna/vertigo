@@ -18,6 +18,9 @@ var Game = {
         this.height = 300;
         this.max_height = 300;
 
+        this.combo_color = "";
+        this.combo_hits = 1;
+
         this.setupCanvas();
         this.player = new Player(this,100,200)
         this.buttons = [];
@@ -59,8 +62,8 @@ var Game = {
         this.canvas.font = "bold 12px sans-serif";
         this.canvas.fillText("FPS: " + fps, 10, 20);
         this.canvas.fillText("Points: " + this.points, 10, 30);
-        this.canvas.fillText("Height: " + this.height, 10, 40);
-        this.canvas.fillText("Max Height: " + this.max_height, 10, 50);
+        this.canvas.fillText("Combo: " + this.combo_color, 10, 40);
+        this.canvas.fillText("Combo hit: " + this.combo_hits, 10, 50);
 
 
     },
