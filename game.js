@@ -1,5 +1,7 @@
 $(document).ready(function(e){
-    var k = Game.init("bu", 700,700);
+    var h = $(window).height() - 2;
+    var w = $(window).width() - 40;
+    var k = Game.init("bu", w, h);
     setupControls(k);
 });
 
