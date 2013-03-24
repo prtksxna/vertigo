@@ -21,7 +21,7 @@ var Game = {
         this.setupCanvas();
         this.player = new Player(this,100,200)
         this.buttons = [];
-        this.generateButtons(50,700);
+        this.generateButtons(50,this.w);
 
         this.now = new Date().getTime();
         this.timer = window.setTimeout(function(){this.stepper()}.bind(this), 1);
