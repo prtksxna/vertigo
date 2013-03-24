@@ -10,7 +10,7 @@ var Button = function(game,y){
             this.destroy();
             return false;
         }
-        this.game.canvas.fillStyle = "#0f0";
+        this.game.canvas.fillStyle = "#3AB82F";
         this.game.canvas.fillRect(this.x,this.y,this.h,this.w);
         return this.x
     }
