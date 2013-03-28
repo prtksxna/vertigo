@@ -1,6 +1,5 @@
 $(document).ready(function(e){
     var k = Game.init();
-    setupControls(k);
 });
 
 var Game = {
@@ -8,7 +7,9 @@ var Game = {
         this.id = "vertigo";
         this.w = $(window).width() - 40;
         this.h = $(window).height() - 2;
+
         this.event = "";
+
         this.speed = 0; // Only Y speed
         this.gravity = 0.0006;
         this.points = 0;
@@ -27,11 +28,61 @@ var Game = {
 
         this.generateButtons(100,this.h);
         this.generateButtons(100,-this.h);
+	this.initControls();
 
         this.now = new Date().getTime();
         this.timer = window.setTimeout(function(){this.stepper()}.bind(this), 1);
 
         return this;
+    },
+
+    initControls: function(){
+	var lr = $(window).width() / 2;
+	var game = this;
+
+	$(document).bind("keydown",function(e){
+            switch(e.keyCode){
+            case 37:
+		e.preventDefault();
+		game.event = "left";
+		break;
+            case 39:
+		e.preventDefault();
+		game.event = "right";
+		break;
+	    case 32:
+		e.preventDefault();
+		game.playPause();
+		break;
+            default:
+		// Do nothing
+            };
+	});
+
+	$(document).bind("keyup",function(e){
+            game.event = "";
+	});
+
+	$(document).bind("mousedown touchstart",function(e){
+            e.preventDefault();
+            var x = 0;
+
+            if (e.originalEvent.touches){
+		x = e.originalEvent.touches[0].pageX;
+            }else{
+		x = e.pageX;
+            }
+
+            if (x > lr){
+		game.event = "right";
+            }else{
+		game.event = "left";
+            }
+	});
+
+	$(document).bind("mouseup touchend",function(e){
+            game.event = "";
+	});
     },
 
     playPause: function(){
