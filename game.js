@@ -5,15 +5,25 @@ $(document).ready(function(e){
 var Game = {
     init: function(id,w,h){
         this.id = "vertigo";
-        this.w = $(window).width() - 40;
-        this.h = $(window).height() - 2;
+        this.w = $(window).width();
+        this.h = $(window).height();
 
+        this.initEnvironment();
+	this.setupCanvas();
+	this.initControls();
+	this.initMainMenu();
+
+        return this;
+    },
+
+    initEnvironment: function(){
         this.event = "";
 
         this.speed = 0; // Only Y speed
         this.gravity = 0.0006;
         this.points = 0;
 
+	this.game_started = false;
 	this.pause = false;
 
         this.height = 300;
@@ -21,19 +31,44 @@ var Game = {
 
         this.combo_color = "";
         this.combo_hits = 1;
+    },
 
-        this.setupCanvas();
+    initMainMenu: function(){
+	this.canvas.font = "bold 30px sans-serif";
+	this.canvas.fillText("Vertigo", 100,100);
+	this.canvas.font = "bold 15px sans-serif"; // TODO Check for touch devices and print correct controls
+	this.canvas.fillText("Hit Spacebar to Start Game", 100,130);
+	this.canvas.fillText("Use Arrow Keys to move around", 100,150);
+	this.canvas.font = "italic 10px sans-serif";
+	this.canvas.fillText("by Path Seventeen", 100,180);
+    },
+
+    initGame: function(){
+	this.destroyGame();
+
+	this.game_started = true;
+
         this.player = new Player(this,100,200)
         this.buttons = [];
 
         this.generateButtons(100,this.h);
         this.generateButtons(100,-this.h);
-	this.initControls();
 
         this.now = new Date().getTime();
         this.timer = window.setTimeout(function(){this.stepper()}.bind(this), 1);
+    },
 
-        return this;
+    destroyGame: function(){
+
+	this.game_started = false;
+
+	delete this.player
+	delete this.buttons
+	delete this.now
+	delete this.timer
+
+	this.initEnvironment();
+	this.initMainMenu();
     },
 
     initControls: function(){
@@ -63,6 +98,8 @@ var Game = {
             game.event = "";
 	});
 
+
+	// For touch devices
 	$(document).bind("mousedown touchstart",function(e){
             e.preventDefault();
             var x = 0;
@@ -86,12 +123,16 @@ var Game = {
     },
 
     playPause: function(){
-	if(this.pause){
-	    this.pause = false;
-	    this.now = new Date().getTime();
-            window.setTimeout(function(){this.stepper()}.bind(this), 1);
+	if(this.game_started){
+	    if(this.pause){
+		this.pause = false;
+		this.now = new Date().getTime();
+		window.setTimeout(function(){this.stepper()}.bind(this), 1);
+	    }else{
+		this.pause = true;
+	    }
 	}else{
-	    this.pause = true;
+	    this.initGame();
 	}
     },
 
@@ -141,6 +182,10 @@ var Game = {
             this.max_height = this.height - (this.height%100) + 100;
             this.generateButtons(50,-500);
         }
+
+	if((this.height + this.h) < this.max_height){
+	    this.destroyGame();
+	}
     },
 
     updateButtons: function(){
