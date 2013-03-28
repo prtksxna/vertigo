@@ -11,6 +11,10 @@ var setupControls = function(game){
             e.preventDefault();
             game.event = "right";
             break;
+	case 32:
+	    e.preventDefault();
+	    game.playPause();
+	    break;
         default:
             // Do nothing
         };

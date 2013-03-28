@@ -15,6 +15,8 @@ var Game = {
         this.gravity = 0.0006;
         this.points = 0;
 
+	this.pause = false;
+
         this.height = 300;
         this.max_height = 300;
 
@@ -34,6 +36,16 @@ var Game = {
         return this;
     },
 
+    playPause: function(){
+	if(this.pause){
+	    this.pause = false;
+	    this.now = new Date().getTime();
+            window.setTimeout(function(){this.stepper()}.bind(this), 1);
+	}else{
+	    this.pause = true;
+	}
+    },
+
     generateButtons: function(n,l){
         for(var i = 0; i < n; i++){
             this.buttons.push(new Button(this, Math.random(1)*(l)));
@@ -49,7 +61,9 @@ var Game = {
 
         this.update();
 
-        window.setTimeout(function(){this.stepper()}.bind(this), 1);
+	if(this.pause === false){
+            window.setTimeout(function(){this.stepper()}.bind(this), 1);
+	}
     },
 
     update: function(){
