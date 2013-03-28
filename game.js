@@ -1,15 +1,13 @@
 $(document).ready(function(e){
-    var h = $(window).height() - 2;
-    var w = $(window).width() - 40;
-    var k = Game.init("bu", w, h);
+    var k = Game.init();
     setupControls(k);
 });
 
 var Game = {
     init: function(id,w,h){
-        this.id = id;
-        this.w = w;
-        this.h = h;
+        this.id = "vertigo";
+        this.w = $(window).width() - 40;
+        this.h = $(window).height() - 2;
         this.event = "";
         this.speed = 0; // Only Y speed
         this.gravity = 0.0006;
