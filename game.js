@@ -97,20 +97,7 @@ var Game = {
     updateButtons: function(){
         var speedDelta = this.speed * this.delta;
         for(var i = 0; i < this.buttons.length; i++){
-
-            var p = this.player;
-            var b = this.buttons[i];
-
-            // Move the buttons
-            this.buttons[i].y += speedDelta;
-            this.buttons[i].draw();
-
-            // check for collisions
-            if((p.y >= b.y && p.y <= (b.y + b.h)) || (b.y >= p.y && b.y <= (p.y + p.w ))){
-                if((p.x >= b.x && p.x <= (b.x + b.w)) || (b.x >= p.x && b.x <= (p.x + p.h ))){
-                    b.taken();
-                }
-            }
+	    this.buttons[i].update(speedDelta); // Update speed and check collisions
         };
     },
 

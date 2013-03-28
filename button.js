@@ -33,7 +33,6 @@ var Button = function(game,y){
     }
 
     this.draw = function(){
-
         if(this.y > this.game.h){ // Out of the canvas out of the game
             this.destroy();
             return false;
@@ -69,6 +68,22 @@ var Button = function(game,y){
         this.game.buttons.splice(index, 1);
         delete this;
     };
+
+    this.update = function(speedDelta){
+	// Move the button
+	this.y += speedDelta;
+	this.draw();
+
+	// Check for collisions
+	var p = this.game.player;
+	var b = this;
+	if((p.y >= b.y && p.y <= (b.y + b.h)) || (b.y >= p.y && b.y <= (p.y + p.w ))){
+            if((p.x >= b.x && p.x <= (b.x + b.w)) || (b.x >= p.x && b.x <= (p.x + p.h ))){
+                b.taken();
+            }
+        }
+    }
+
 
     this.game = game;
     this.y = y;
