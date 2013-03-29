@@ -9,12 +9,15 @@ var Button = function(game,y){
         var color = Math.random() * 20;
         if(color < 9){
             this.color = "#3AB82F";
+	    this.img = "green_";
         }else if(color < 18){
             this.color = "#2F7EBB";
+	    this.img = "blue_";
         }else{
             this.color = "#BA2F2F";
             this.h = 20;
             this.jump = -0.2;
+	    this.img = "red.png";
             return;
         }
 
@@ -23,12 +26,15 @@ var Button = function(game,y){
         if (jump < 1){
             this.jump = 0.3;
             this.h = 10;
+	    this.img += "one.png";
         }else if(jump < 2){
             this.jump = 0.5;
             this.h = 20;
+	    this.img += "two.png";
         }else{
             this.jump = 0.7;
             this.h = 30;
+	    this.img += "three.png";
         }
     }
 
@@ -37,8 +43,13 @@ var Button = function(game,y){
             this.destroy();
             return false;
         }
-        this.game.canvas.fillStyle = this.color;
-        this.game.canvas.fillRect(this.x,this.y,this.w,this.h);
+//        this.game.canvas.fillStyle = this.color;
+//        this.game.canvas.fillRect(this.x,this.y,this.w,this.h);
+
+	var img = new Image();
+	img.src = "res/img/" + this.img;
+	this.game.canvas.drawImage(img, this.x, this.y);
+
         return this.x
     }
 
