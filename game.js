@@ -37,10 +37,16 @@ var Game = {
 	this.canvas.font = "bold 30px sans-serif";
 	this.canvas.fillText("Vertigo", 100,100);
 	this.canvas.font = "bold 15px sans-serif"; // TODO Check for touch devices and print correct controls
-	this.canvas.fillText("Hit Spacebar to Start Game", 100,130);
-	this.canvas.fillText("Use Arrow Keys to move around", 100,150);
-	this.canvas.font = "italic 10px sans-serif";
-	this.canvas.fillText("by Path Seventeen", 100,180);
+
+	if(!!(this.points)){
+	    this.canvas.fillText("You scored "+ this.points + " points.", 100,130);
+	    this.canvas.fillText("Hit Spacebar to play again", 100,150);
+	}else{
+	    this.canvas.fillText("Hit Spacebar to Start Game", 100,130);
+	    this.canvas.fillText("Use Arrow Keys to move around", 100,150);
+	    this.canvas.font = "italic 10px sans-serif";
+	    this.canvas.fillText("by Path Seventeen", 100,180);
+	}
     },
 
     initGame: function(){
