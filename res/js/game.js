@@ -22,6 +22,8 @@ var Game = {
         this.gravity = 0.0006;
         this.points = 0;
 
+	this.bgTop = 0;
+
 	this.game_started = false;
 	this.pause = false;
 
@@ -189,6 +191,7 @@ var Game = {
         this.canvas.clearRect(0, 0, this.w, this.h); // Clear Canvas
 
         this.updateSpeed();
+	this.updateBg();
         this.updateButtons();
         this.player.react(); // Make player react to event
 
@@ -201,6 +204,14 @@ var Game = {
         this.canvas.fillText("Combo hit: " + this.combo_hits, 10, 50);
 
 
+    },
+
+    updateBg: function(){
+	var img = new Image();
+	img.src = "res/img/bg.png";
+	this.canvas.drawImage(img, 0, this.bgTop);
+	this.canvas.drawImage(img,0, this.bgTop - 800);
+	this.bgTop += this.speed / 0.5;
     },
 
     updateSpeed: function(){
