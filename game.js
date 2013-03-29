@@ -8,7 +8,6 @@ var Game = {
         this.w = $(window).width();
         this.h = $(window).height();
 
-        this.initEnvironment();
 	this.setupCanvas();
 	this.initControls();
 	this.initMainMenu();
@@ -34,6 +33,7 @@ var Game = {
     },
 
     initMainMenu: function(){
+        this.canvas.clearRect(0, 0, this.w, this.h); // Clear Canvas
 	this.canvas.font = "bold 30px sans-serif";
 	this.canvas.fillText("Vertigo", 100,100);
 	this.canvas.font = "bold 15px sans-serif"; // TODO Check for touch devices and print correct controls
@@ -46,6 +46,7 @@ var Game = {
     initGame: function(){
 	this.destroyGame();
 
+	this.initEnvironment();
 	this.game_started = true;
 
         this.player = new Player(this,100,200)
@@ -67,8 +68,25 @@ var Game = {
 	delete this.now
 	delete this.timer
 
-	this.initEnvironment();
 	this.initMainMenu();
+    },
+
+    initPauseMenu: function(){
+	this.canvas.fillStyle = "#DDDDDD";
+	this.canvas.fillRect(0,0,300,300);
+
+	this.canvas.fillStyle = "#000000";
+	this.canvas.font = "bold 30px sans-serif";
+	this.canvas.fillText("Game Paused", 50,100);
+	this.canvas.font = "bold 15px sans-serif"; // TODO Check for touch devices and print correct controls
+	this.canvas.fillText("Hit Spacebar to Resume", 50,130);
+	this.canvas.fillText("Esc to go back to menu", 50,150);
+    },
+
+    backToMenu: function(){
+	if(this.pause && this.game_started){
+	    this.destroyGame();
+	}
     },
 
     initControls: function(){
@@ -88,6 +106,9 @@ var Game = {
 	    case 32:
 		e.preventDefault();
 		game.playPause();
+		break;
+	    case 27:
+		game.backToMenu();
 		break;
             default:
 		// Do nothing
@@ -153,6 +174,8 @@ var Game = {
 
 	if(this.pause === false){
             window.setTimeout(function(){this.stepper()}.bind(this), 1);
+	}else{
+	    this.initPauseMenu();
 	}
     },
 
