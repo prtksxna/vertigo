@@ -6,11 +6,11 @@ var Button = function(game,y){
 
     this.init = function(){
         // Color
-        var color = Math.random() * 20;
-        if(color < 9){
+        var color = Math.random() * 30;
+        if(color < 14){
             this.color = "#3AB82F";
 	    this.img = "green_";
-        }else if(color < 18){
+        }else if(color < 28){
             this.color = "#2F7EBB";
 	    this.img = "blue_";
         }else{
@@ -39,7 +39,7 @@ var Button = function(game,y){
     }
 
     this.draw = function(){
-        if(this.y > this.game.h * 2){ // Out of the canvas out of the game
+        if(this.y > this.game.h * 1.2){ // Out of the canvas out of the game
             this.destroy();
             return false;
         }

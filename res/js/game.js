@@ -232,7 +232,7 @@ var Game = {
     },
 
     generateButtons: function(pos){
-	var n = this.w / 20;
+	var n = this.w / 40;
         for(var i = 0; i < n; i++){
             this.buttons.push(new Button(this, Math.random(1)*(pos)));
         }
