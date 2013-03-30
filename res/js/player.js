@@ -10,6 +10,14 @@ var Player = function(game,x,y){
             break;
         };
         this.x += this.momentum;
+
+	// Wrap Around
+	if(this.x > this.game.w){
+	    this.x = 0;
+	}else if((this.x+this.w) < 0){
+	    this.x = this.game.w;
+	}
+
         this.draw();
         this.updateMomentum();
     }
@@ -21,6 +29,10 @@ var Player = function(game,x,y){
         var s = m ? m < 0 ? -1 : 1 : 0; // sign of momentum
         var am = Math.abs(m) - d; // absolute momentum minus delta
         this.momentum = am < d ? 0 : s === -1 ? -am : am;
+
+	// Caps
+	this.momentum = (this.momentum > 4) ? 4 : this.momentum;
+	this.momentum = (this.momentum < -4) ? -4 : this.momentum;
     }
 
     this.draw = function(){
