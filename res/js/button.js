@@ -39,7 +39,7 @@ var Button = function(game,y){
     }
 
     this.draw = function(){
-        if(this.y > this.game.h){ // Out of the canvas out of the game
+        if(this.y > this.game.h * 2){ // Out of the canvas out of the game
             this.destroy();
             return false;
         }
