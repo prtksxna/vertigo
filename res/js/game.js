@@ -216,8 +216,6 @@ var Game = {
         this.now = new Date().getTime();
         this.delta = this.now - then;
 
-        this.points += this.delta;
-
         this.update();
 
 	if(this.pause === false){

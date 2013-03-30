@@ -68,7 +68,7 @@ var Button = function(game,y){
             this.game.combo_color = this.color;
         }
 
-        this.game.points += this.h * 100;
+        this.game.points += (this.h * 10) + ((this.combo_hits ^ 2) * 10);
         this.destroy();
     }
 
