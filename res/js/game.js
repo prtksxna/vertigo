@@ -8,6 +8,9 @@ var Game = {
         this.w = $(window).width();
         this.h = $(window).height();
 
+	this.game_started = false;
+	this.pause = false;
+
 	this.setupCanvas();
 	this.initControls();
 	this.initMainMenu();
@@ -23,9 +26,6 @@ var Game = {
         this.points = 0;
 
 	this.bgTop = 0;
-
-	this.game_started = false;
-	this.pause = false;
 
         this.height = 300;
         this.max_height = 300;
@@ -131,6 +131,11 @@ var Game = {
 	// For touch devices
 	$(document).bind("mousedown touchstart",function(e){
             e.preventDefault();
+	    if(!game.game_started){;
+		game.initGame();
+		return false;
+	    }
+
             var x = 0;
 
             if (e.originalEvent.touches){
