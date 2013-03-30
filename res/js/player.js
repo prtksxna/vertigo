@@ -54,6 +54,9 @@ var Player = function(game,x,y){
 
 
 	this.game.canvas.drawImage(this.game.images[img], this.x, this.y);
+	this.game.canvas.fillStyle = this.game.combo_color;
+        this.game.canvas.font = "bold 13px sans-serif";
+	this.game.canvas.fillText(this.game.combo_hits + "x COMBO", this.x + this.w, this.y + this.h)
     }
 
     this.x = x;
