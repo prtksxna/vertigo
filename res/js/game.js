@@ -1,4 +1,4 @@
-$(document).ready(function(e){
+$(window).bind("load",function(e){
     var k = Game.init();
 });
 
