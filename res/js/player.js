@@ -25,13 +25,29 @@ var Player = function(game,x,y){
 
     this.draw = function(){
         this.game.canvas.fillStyle = "#000";
-        this.game.canvas.fillRect(this.x,this.y,this.h,this.w);
+//        this.game.canvas.fillRect(this.x,this.y,this.w, this.h);
+	var img = "c_";
+
+	if(this.game.speed > 0){
+	    img += "up_";
+	}else{
+	    img += "down_";
+	}
+
+	if(this.momentum > 0){
+	    img += "right";
+	}else{
+	    img += "left";
+	}
+
+
+	this.game.canvas.drawImage(this.game.images[img], this.x, this.y);
     }
 
     this.x = x;
     this.y = y;
-    this.w = 10;
-    this.h = 10;
+    this.w = 20;
+    this.h = 30;
     this.momentum = 0;
     this.speed = 0.012; // Only X Speed
     this.friction = 0.006;

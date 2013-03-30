@@ -20,6 +20,21 @@ var Game = {
     },
 
     initImages: function(){
+
+	// Character
+	var c_down_right = new Image();
+	c_down_right.src = "res/img/c_down_right.png";
+
+	var c_down_left = new Image();
+	c_down_left.src = "res/img/c_down_left.png";
+
+	var c_up_right = new Image();
+	c_up_right.src = "res/img/c_up_right.png";
+
+	var c_up_left = new Image();
+	c_up_left.src = "res/img/c_up_left.png";
+
+	// Arrows
 	var blue_one = new Image();
 	blue_one.src = "res/img/blue_one.png"
 
@@ -42,6 +57,10 @@ var Game = {
 	red.src = "res/img/red.png"
 
 	this.images = {
+	    "c_down_right": c_down_right,
+	    "c_down_left": c_down_left,
+	    "c_up_right": c_up_right,
+	    "c_up_left": c_up_left,
 	    "blue_one": blue_one,
 	    "blue_two": blue_two,
 	    "blue_three": blue_three,
@@ -50,6 +69,8 @@ var Game = {
 	    "green_three": green_three,
 	    "red": red
 	};
+
+	console.log(this.images);
     },
 
     initEnvironment: function(){
@@ -242,6 +263,8 @@ var Game = {
         this.canvas.fillText("Combo hit: " + this.combo_hits, 10, 50);
         this.canvas.fillText("Height: " + this.height, 10, 60);
         this.canvas.fillText("Max Height: " + this.max_height, 10, 70);
+        this.canvas.fillText("Speed: " + this.speed, 10, 80);
+        this.canvas.fillText("Momentum: " + this.player.momentum, 10, 90);
     },
 
     updateBg: function(){
