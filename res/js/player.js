@@ -52,11 +52,17 @@ var Player = function(game,x,y){
 	    img += "left";
 	}
 
+	var angle = (this.game.speed < 0) ? (this.momentum * -1) : this.momentum
+	angle = angle * 3 * Math.PI/180
 
-	this.game.canvas.drawImage(this.game.images[img], this.x, this.y);
-	this.game.canvas.fillStyle = this.game.combo_color;
-        this.game.canvas.font = "bold 13px sans-serif";
-	this.game.canvas.fillText(this.game.combo_hits + "x COMBO", this.x + this.w, this.y + this.h)
+	this.game.canvas.save();
+
+	this.game.canvas.translate(this.x, this.y);
+	this.game.canvas.translate(this.w/2, this.h/2);
+	this.game.canvas.rotate(angle);
+	this.game.canvas.drawImage(this.game.images[img], 0, 0);
+
+	this.game.canvas.restore();
     }
 
     this.x = x;
