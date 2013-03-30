@@ -94,8 +94,8 @@ var Game = {
         this.player = new Player(this,100,200)
         this.buttons = [];
 
-        this.generateButtons(100,this.h);
-        this.generateButtons(100,-this.h);
+        this.generateButtons(this.h);
+        this.generateButtons(-this.h);
 
         this.now = new Date().getTime();
         this.timer = window.setTimeout(function(){this.stepper()}.bind(this), 1);
@@ -204,9 +204,10 @@ var Game = {
 	}
     },
 
-    generateButtons: function(n,l){
+    generateButtons: function(pos){
+	var n = this.w / 20;
         for(var i = 0; i < n; i++){
-            this.buttons.push(new Button(this, Math.random(1)*(l)));
+            this.buttons.push(new Button(this, Math.random(1)*(pos)));
         }
     },
 
@@ -241,8 +242,8 @@ var Game = {
         this.canvas.fillText("Points: " + this.points, 10, 30);
         this.canvas.fillText("Combo: " + this.combo_color, 10, 40);
         this.canvas.fillText("Combo hit: " + this.combo_hits, 10, 50);
-
-
+        this.canvas.fillText("Height: " + this.height, 10, 60);
+        this.canvas.fillText("Max Height: " + this.max_height, 10, 70);
     },
 
     updateBg: function(){
@@ -259,9 +260,10 @@ var Game = {
 
         if (this.height > this.max_height){
             this.max_height = this.height - (this.height%100) + 100;
-            this.generateButtons(50,-500);
+            this.generateButtons(-500);
         }
 
+	// TODO Fix game over check
 	if((this.height + this.h) < this.max_height){
 	    this.destroyGame();
 	}
