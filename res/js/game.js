@@ -12,10 +12,44 @@ var Game = {
 	this.pause = false;
 
 	this.setupCanvas();
+	this.initImages();
 	this.initControls();
 	this.initMainMenu();
 
         return this;
+    },
+
+    initImages: function(){
+	var blue_one = new Image();
+	blue_one.src = "res/img/blue_one.png"
+
+	var blue_two = new Image();
+	blue_two.src = "res/img/blue_two.png"
+
+	var blue_three = new Image();
+	blue_three.src = "res/img/blue_three.png"
+
+	var green_one = new Image();
+	green_one.src = "res/img/green_one.png"
+
+	var green_two = new Image();
+	green_two.src = "res/img/green_two.png"
+
+	var green_three = new Image();
+	green_three.src = "res/img/green_three.png"
+
+	var red = new Image();
+	red.src = "res/img/red.png"
+
+	this.images = {
+	    "blue_one": blue_one,
+	    "blue_two": blue_two,
+	    "blue_three": blue_three,
+	    "green_one": green_one,
+	    "green_two": green_two,
+	    "green_three": green_three,
+	    "red": red
+	};
     },
 
     initEnvironment: function(){
@@ -196,7 +230,7 @@ var Game = {
         this.canvas.clearRect(0, 0, this.w, this.h); // Clear Canvas
 
         this.updateSpeed();
-	this.updateBg();
+//	this.updateBg();
         this.updateButtons();
         this.player.react(); // Make player react to event
 
