@@ -21,6 +21,11 @@ var Game = {
 
     initImages: function(){
 
+	// Background
+	var bg = new Image();
+	bg.src = "res/img/bg.png";
+
+
 	// Character
 	var c_down_right = new Image();
 	c_down_right.src = "res/img/c_down_right.png";
@@ -57,6 +62,7 @@ var Game = {
 	red.src = "res/img/red.png"
 
 	this.images = {
+	    "bg": bg,
 	    "c_down_right": c_down_right,
 	    "c_down_left": c_down_left,
 	    "c_up_right": c_up_right,
@@ -250,7 +256,7 @@ var Game = {
         this.canvas.clearRect(0, 0, this.w, this.h); // Clear Canvas
 
         this.updateSpeed();
-//	this.updateBg();
+	this.updateBg();
         this.updateButtons();
         this.player.react(); // Make player react to event
 
@@ -268,11 +274,12 @@ var Game = {
     },
 
     updateBg: function(){
-	var img = new Image();
-	img.src = "res/img/bg.png";
-	this.canvas.drawImage(img, 0, this.bgTop);
-	this.canvas.drawImage(img,0, this.bgTop - 800);
-	this.bgTop += this.speed / 0.5;
+	if(this.bgTop > this.h){
+	    this.bgTop = 0;
+	}
+	this.canvas.drawImage(this.images["bg"], 0, this.bgTop);
+	this.canvas.drawImage(this.images["bg"], 0, this.bgTop - 800);
+	this.bgTop += this.speed / 2;
     },
 
     updateSpeed: function(){
