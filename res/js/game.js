@@ -82,7 +82,7 @@ var Game = {
     initEnvironment: function(){
         this.event = "";
 
-        this.speed = 0; // Only Y speed
+        this.speed = 1; // Only Y speed
         this.gravity = 0.0006;
         this.points = 0;
 
