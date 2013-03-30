@@ -43,10 +43,10 @@ var Button = function(game,y){
             this.destroy();
             return false;
         }
-        this.game.canvas.fillStyle = this.color;
-        this.game.canvas.fillRect(this.x,this.y,this.w,this.h);
+//        this.game.canvas.fillStyle = this.color;
+//        this.game.canvas.fillRect(this.x,this.y,this.w,this.h);
 
-//	this.game.canvas.drawImage(this.game.images[this.img], this.x, this.y);
+	this.game.canvas.drawImage(this.game.images[this.img], this.x, this.y);
 
         return this.x
     }
