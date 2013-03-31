@@ -344,7 +344,7 @@ var Game = {
 	    this.canvas.fillStyle = this.combo_color;
 	    this.canvas.fillRect(200, 0, 200, 50);
 	    this.canvas.fillStyle = "#ffffff";
-            this.canvas.fillText(this.combo_hits + "x Combo", ((this.w/6) + 10), 32);
+            this.canvas.fillText(this.combo_hits + "x Combo", 210, 32);
 	}
     },
 
