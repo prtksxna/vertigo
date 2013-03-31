@@ -15,7 +15,8 @@ var Button = function(game,y){
 	    this.img = "blue_";
         }else{
             this.color = "#BA2F2F";
-            this.h = 20;
+            this.h = 15;
+	    this.w = 30;
             this.jump = -0.2;
 	    this.img = "red";
             return;
@@ -25,15 +26,15 @@ var Button = function(game,y){
         var jump = Math.random() * 3;
         if (jump < 1){
             this.jump = 0.3;
-            this.h = 10;
+            this.h = 15;
 	    this.img += "one";
         }else if(jump < 2){
             this.jump = 0.5;
-            this.h = 20;
+            this.h = 30;
 	    this.img += "two";
         }else{
             this.jump = 0.7;
-            this.h = 30;
+            this.h = 45;
 	    this.img += "three";
         }
 
@@ -109,8 +110,8 @@ var Button = function(game,y){
 
     this.game = game;
     this.y = y;
-    this.w = 20;
-    this.h = 20;
+    this.w = 24;
+    this.h = 30;
     this.jump = 0.5;
 
     this.placeRandomly();
