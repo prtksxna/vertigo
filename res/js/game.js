@@ -318,7 +318,7 @@ var Game = {
         this.updateButtons();
         this.player.react(); // Make player react to event
 
-       // FPS Logging & Points
+       /* FPS Logging & Points
         var fps = Math.round(1000/this.delta);
         this.canvas.font = "bold 12px sans-serif";
 	this.canvas.fillStyle = "#000";
@@ -327,7 +327,7 @@ var Game = {
         this.canvas.fillText("Max Height: " + this.max_height, 10, 80);
         this.canvas.fillText("Speed: " + this.speed, 10, 90);
         this.canvas.fillText("Momentum: " + this.player.momentum, 10, 100);
-        this.canvas.fillText("Top Button: " + this.top_button.y, 10, 110);
+        this.canvas.fillText("Top Button: " + this.top_button.y, 10, 110);*/
 
 	// Game interface
 	this.updateInterface();
@@ -335,15 +335,15 @@ var Game = {
 
     updateInterface: function(){
 	this.canvas.fillStyle = "#000";
-	this.canvas.fillRect(0,0,this.w/2, 50);
-	this.canvas.fillStyle = "#ffffff";
-        this.canvas.font = "bold 18px sans-serif";
-        this.canvas.fillText("Points: " + this.points, 10, 30);
+	this.canvas.fillRect(0,0,this.w/6, 50);
+	this.canvas.fillStyle = "#ffffff"
+	this.canvas.font = "30px 'munro_smallregular'";;
+        this.canvas.fillText(this.points + "pts", 10, 32);
 
 	this.canvas.fillStyle = this.combo_color;
-	this.canvas.fillRect(this.w/2, 0, this.w, 50);
+	this.canvas.fillRect(this.w/6, 0, this.w/6, 50);
 	this.canvas.fillStyle = "#ffffff";
-        this.canvas.fillText(this.combo_hits + "x Combo", ((this.w/2) + 10), 30 );
+        this.canvas.fillText(this.combo_hits + "x Combo", ((this.w/6) + 10), 32);
     },
 
     updateBg: function(){
