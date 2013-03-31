@@ -87,6 +87,7 @@ var Game = {
         this.points = 0;
 
 	this.bgTop = 0;
+	this.top_button = undefined;
 
         this.height = 300;
         this.max_height = 300;
@@ -117,6 +118,7 @@ var Game = {
 
 	this.initEnvironment();
 	this.game_started = true;
+	this.pause = false;
 
         this.player = new Player(this,this.w/2, this.h/3)
         this.buttons = [];
@@ -269,6 +271,7 @@ var Game = {
         this.canvas.fillText("Max Height: " + this.max_height, 10, 80);
         this.canvas.fillText("Speed: " + this.speed, 10, 90);
         this.canvas.fillText("Momentum: " + this.player.momentum, 10, 100);
+        this.canvas.fillText("Top Button: " + this.top_button.y, 10, 110);
 
 	// Game interface
 	this.updateInterface();
@@ -301,9 +304,13 @@ var Game = {
         this.height += this.speed;
 
         if (this.height > this.max_height){
-            this.max_height = this.height - (this.height%100) + 100;
-            this.generateButtons(-500);
+            this.max_height = this.height;
         }
+
+
+	if(this.top_button.y > 0){
+	    this.generateButtons(-this.h);
+	}
 
 	// TODO Fix game over check
 	if((this.height + this.h) < this.max_height){

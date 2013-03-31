@@ -36,13 +36,26 @@ var Button = function(game,y){
             this.h = 30;
 	    this.img += "three";
         }
+
+	this.checkTop();
     }
+
+    this.checkTop = function(){
+	if(this.game.top_button !== undefined){
+	    if(this.game.top_button.y > this.y){
+		this.game.top_button = this;
+	    }
+	}else{
+	    this.game.top_button = this;
+	}
+    };
 
     this.draw = function(){
         if(this.y > this.game.h * 1.2){ // Out of the canvas out of the game
             this.destroy();
             return false;
         }
+
 //        this.game.canvas.fillStyle = this.color;
 //        this.game.canvas.fillRect(this.x,this.y,this.w,this.h);
 
