@@ -38,7 +38,7 @@ var Player = function(game,x,y){
     this.draw = function(){
         this.game.canvas.fillStyle = "#000";
 
-	var img = "c_";
+	var img = "p_";
 
 	if(this.game.speed > 0){
 	    img += "up_";
@@ -48,8 +48,10 @@ var Player = function(game,x,y){
 
 	if(this.momentum > 0){
 	    img += "right";
-	}else{
+	}else if(this.momentum < 0){
 	    img += "left";
+	}else{
+	    img += "straight";
 	}
 
 	var angle = (this.game.speed < 0) ? (this.momentum * -1) : this.momentum
@@ -66,8 +68,8 @@ var Player = function(game,x,y){
 
     this.x = x;
     this.y = y;
-    this.w = 30;
-    this.h = 30;
+    this.w = 27;
+    this.h = 40;
     this.momentum = 0;
     this.speed = 0.012; // Only X Speed
     this.friction = 0.006;

@@ -27,17 +27,23 @@ var Game = {
 
 
 	// Character
-	var c_down_right = new Image();
-	c_down_right.src = "res/img/c_down_right.png";
+	var p_down_right = new Image();
+	p_down_right.src = "res/img/p_down_right.png";
 
-	var c_down_left = new Image();
-	c_down_left.src = "res/img/c_down_left.png";
+	var p_down_left = new Image();
+	p_down_left.src = "res/img/p_down_left.png";
 
-	var c_up_right = new Image();
-	c_up_right.src = "res/img/c_up_right.png";
+	var p_down_straight = new Image();
+	p_down_straight.src = "res/img/p_down_straight.png";
 
-	var c_up_left = new Image();
-	c_up_left.src = "res/img/c_up_left.png";
+	var p_up_right = new Image();
+	p_up_right.src = "res/img/p_up_right.png";
+
+	var p_up_left = new Image();
+	p_up_left.src = "res/img/p_up_left.png";
+
+	var p_up_straight = new Image();
+	p_up_straight.src = "res/img/p_up_straight.png";
 
 	// Arrows
 	var blue_one = new Image();
@@ -63,10 +69,12 @@ var Game = {
 
 	this.images = {
 	    "bg": bg,
-	    "c_down_right": c_down_right,
-	    "c_down_left": c_down_left,
-	    "c_up_right": c_up_right,
-	    "c_up_left": c_up_left,
+	    "p_down_right": p_down_right,
+	    "p_down_left": p_down_left,
+	    "p_down_straight": p_down_straight,
+	    "p_up_right": p_up_right,
+	    "p_up_left": p_up_left,
+	    "p_up_straight": p_up_straight,
 	    "blue_one": blue_one,
 	    "blue_two": blue_two,
 	    "blue_three": blue_three,
