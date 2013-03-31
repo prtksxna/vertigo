@@ -313,8 +313,8 @@ var Game = {
     update: function(){
         this.canvas.clearRect(0, 0, this.w, this.h); // Clear Canvas
 
-        this.updateSpeed();
 	this.updateBg();
+        this.updateSpeed();
         this.updateButtons();
         this.player.react(); // Make player react to event
 
