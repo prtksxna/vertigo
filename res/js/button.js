@@ -78,8 +78,13 @@ var Button = function(game,y){
         if(this.game.combo_color == this.color){
             this.game.combo_hits += 1;
         }else{
-            this.game.combo_hits = 1;
-            this.game.combo_color = this.color;
+	    if(this.color !== "#BA2F2F"){
+		this.game.combo_hits = 1;
+		this.game.combo_color = this.color;
+	    }else{
+		this.game.combo_hits = 1;
+		this.game.combo_color = "";
+	    }
         }
 
         this.game.points += (this.h * 10) + ((this.combo_hits ^ 2) * 10);

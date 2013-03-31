@@ -340,10 +340,12 @@ var Game = {
 	this.canvas.font = "30px 'munro_smallregular'";;
         this.canvas.fillText(this.points + "pts", 10, 32);
 
-	this.canvas.fillStyle = this.combo_color;
-	this.canvas.fillRect(this.w/6, 0, this.w/6, 50);
-	this.canvas.fillStyle = "#ffffff";
-        this.canvas.fillText(this.combo_hits + "x Combo", ((this.w/6) + 10), 32);
+	if(this.combo_color !== ""){
+	    this.canvas.fillStyle = this.combo_color;
+	    this.canvas.fillRect(this.w/6, 0, this.w/6, 50);
+	    this.canvas.fillStyle = "#ffffff";
+            this.canvas.fillText(this.combo_hits + "x Combo", ((this.w/6) + 10), 32);
+	}
     },
 
     updateBg: function(){
