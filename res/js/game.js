@@ -314,7 +314,7 @@ var Game = {
         this.canvas.clearRect(0, 0, this.w, this.h); // Clear Canvas
 
         this.updateSpeed();
-//	this.updateBg();
+	this.updateBg();
         this.updateButtons();
         this.player.react(); // Make player react to event
 
@@ -349,6 +349,10 @@ var Game = {
     },
 
     updateBg: function(){
+	this.canvas.fillStyle = "#DDDDDD";
+	this.canvas.fillRect(0,0,this.w, this.h);
+	return;
+
 	if(this.bgTop > this.h){
 	    this.bgTop = 0;
 	}
