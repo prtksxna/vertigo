@@ -37,7 +37,7 @@ var Player = function(game,x,y){
 
     this.draw = function(){
         this.game.canvas.fillStyle = "#000";
-//        this.game.canvas.fillRect(this.x,this.y,this.w, this.h);
+
 	var img = "c_";
 
 	if(this.game.speed > 0){
@@ -58,7 +58,6 @@ var Player = function(game,x,y){
 	this.game.canvas.save();
 
 	this.game.canvas.translate(this.x, this.y);
-	this.game.canvas.translate(this.w/2, this.h/2);
 	this.game.canvas.rotate(angle);
 	this.game.canvas.drawImage(this.game.images[img], 0, 0);
 
@@ -67,7 +66,7 @@ var Player = function(game,x,y){
 
     this.x = x;
     this.y = y;
-    this.w = 20;
+    this.w = 30;
     this.h = 30;
     this.momentum = 0;
     this.speed = 0.012; // Only X Speed

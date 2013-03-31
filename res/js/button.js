@@ -99,8 +99,8 @@ var Button = function(game,y){
 	// Check for collisions
 	var p = this.game.player;
 	var b = this;
-	if((p.y >= b.y && p.y <= (b.y + b.h)) || (b.y >= p.y && b.y <= (p.y + p.w ))){
-            if((p.x >= b.x && p.x <= (b.x + b.w)) || (b.x >= p.x && b.x <= (p.x + p.h ))){
+	if((p.y >= b.y && p.y <= (b.y + b.h)) || (b.y >= p.y && b.y <= (p.y + p.h ))){
+            if((p.x >= b.x && p.x <= (b.x + b.w)) || (b.x >= p.x && b.x <= (p.x + p.w ))){
                 b.taken();
             }
         }
