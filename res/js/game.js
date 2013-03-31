@@ -118,7 +118,7 @@ var Game = {
 	this.initEnvironment();
 	this.game_started = true;
 
-        this.player = new Player(this,100,200)
+        this.player = new Player(this,this.w/2, this.h/3)
         this.buttons = [];
 
         this.generateButtons(this.h);
