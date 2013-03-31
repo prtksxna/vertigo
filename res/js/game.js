@@ -127,13 +127,17 @@ var Game = {
 	this.canvas.font = "30px 'munro_smallregular'";
 	this.canvas.textAlign = "center"
 
-	// TODO Check for touch devices and print correct controls
+	var is_touch_device = 'ontouchstart' in document.documentElement;
 
 	if(!!(this.points)){
 	    this.canvas.fillText("You scored ", 170,130);
 	    this.canvas.fillText(this.points + " points!", 170,150);
 
-	    this.canvas.fillText("Hit Spacebar", 170,190);
+	    if(is_touch_device){
+		this.canvas.fillText("Tap to Restart", 170,190);
+	    }else{
+		this.canvas.fillText("Hit Spacebar", 170,190);
+	    }
 	    this.canvas.fillText("To try again", 170,210);
 	}else{
 	    this.canvas.fillText("Collect", 85, 140);
@@ -146,8 +150,13 @@ var Game = {
 	    this.canvas.fillText("Use the same color", 170, 240);
 	    this.canvas.fillText("To make combos", 170, 270);
 
-	    this.canvas.fillText("Hit spacebar to begin", 170, 330);
-	    this.canvas.fillText("Arrow keys to control", 170, 360);
+	    if(is_touch_device){
+		this.canvas.fillText("Tap to begin", 170, 330);
+		this.canvas.fillText("Tap edges to control", 170, 360);
+	    }else{
+		this.canvas.fillText("Hit spacebar to begin", 170, 330);
+		this.canvas.fillText("Arrow keys to control", 170, 360);
+	    }
 	}
 
 	this.canvas.restore();
