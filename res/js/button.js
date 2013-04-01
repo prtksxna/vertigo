@@ -1,7 +1,7 @@
 var Button = function(game,y){
 
     this.placeRandomly = function(){
-        this.x = Math.random(1) * this.game.w;
+        this.x = Math.random(1) * (this.game.w - 35);
     }
 
     this.init = function(){
