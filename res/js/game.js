@@ -385,6 +385,7 @@ var Game = {
 
         // TODO Fix game over check
         if((this.height + this.h) < this.max_height){
+            $("#fall_sound")[0].play();
             var leaderboard = new Clay.Leaderboard({id:"score"});
             leaderboard.post({score : this.points}, function(response){
                 console.log(response);

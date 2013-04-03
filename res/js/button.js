@@ -9,16 +9,16 @@ var Button = function(game,y){
         var color = Math.random() * 30;
         if(color < 14){
             this.color = "#3AB82F";
-	    this.img = "green_";
+            this.img = "green_";
         }else if(color < 28){
             this.color = "#2F7EBB";
-	    this.img = "blue_";
+            this.img = "blue_";
         }else{
             this.color = "#BA2F2F";
             this.h = 15;
-	    this.w = 30;
+            this.w = 30;
             this.jump = -0.2;
-	    this.img = "red";
+            this.img = "red";
             return;
         }
 
@@ -27,28 +27,28 @@ var Button = function(game,y){
         if (jump < 1){
             this.jump = 0.3;
             this.h = 15;
-	    this.img += "one";
+            this.img += "one";
         }else if(jump < 2){
             this.jump = 0.5;
             this.h = 30;
-	    this.img += "two";
+            this.img += "two";
         }else{
             this.jump = 0.7;
             this.h = 45;
-	    this.img += "three";
+            this.img += "three";
         }
 
-	this.checkTop();
+        this.checkTop();
     }
 
     this.checkTop = function(){
-	if(this.game.top_button !== undefined){
-	    if(this.game.top_button.y > this.y){
-		this.game.top_button = this;
-	    }
-	}else{
-	    this.game.top_button = this;
-	}
+        if(this.game.top_button !== undefined){
+            if(this.game.top_button.y > this.y){
+                this.game.top_button = this;
+            }
+        }else{
+            this.game.top_button = this;
+        }
     };
 
     this.draw = function(){
@@ -60,7 +60,7 @@ var Button = function(game,y){
 //        this.game.canvas.fillStyle = this.color;
 //        this.game.canvas.fillRect(this.x,this.y,this.w,this.h);
 
-	this.game.canvas.drawImage(this.game.images[this.img], this.x, this.y);
+        this.game.canvas.drawImage(this.game.images[this.img], this.x, this.y);
 
         return this.x
     }
@@ -77,14 +77,17 @@ var Button = function(game,y){
 
         if(this.game.combo_color == this.color){
             this.game.combo_hits += 1;
+            $("#jump_sound")[0].play();
         }else{
-	    if(this.color !== "#BA2F2F"){
-		this.game.combo_hits = 1;
-		this.game.combo_color = this.color;
-	    }else{
-		this.game.combo_hits = 1;
-		this.game.combo_color = "";
-	    }
+            if(this.color !== "#BA2F2F"){
+                this.game.combo_hits = 1;
+                this.game.combo_color = this.color;
+                $("#jump_sound")[0].play();
+            }else{
+                this.game.combo_hits = 1;
+                this.game.combo_color = "";
+                $("#red_sound")[0].play();
+            }
         }
 
         this.game.points += (this.h * 10) + ((this.combo_hits ^ 2) * 10);
@@ -98,14 +101,14 @@ var Button = function(game,y){
     };
 
     this.update = function(speedDelta){
-	// Move the button
-	this.y += speedDelta;
-	this.draw();
+        // Move the button
+        this.y += speedDelta;
+        this.draw();
 
-	// Check for collisions
-	var p = this.game.player;
-	var b = this;
-	if((p.y >= b.y && p.y <= (b.y + b.h)) || (b.y >= p.y && b.y <= (p.y + p.h ))){
+        // Check for collisions
+        var p = this.game.player;
+        var b = this;
+        if((p.y >= b.y && p.y <= (b.y + b.h)) || (b.y >= p.y && b.y <= (p.y + p.h ))){
             if((p.x >= b.x && p.x <= (b.x + b.w)) || (b.x >= p.x && b.x <= (p.x + p.w ))){
                 b.taken();
             }
