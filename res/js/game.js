@@ -385,6 +385,10 @@ var Game = {
 
         // TODO Fix game over check
         if((this.height + this.h) < this.max_height){
+            var leaderboard = new Clay.Leaderboard({id:"score"});
+            leaderboard.post({score : this.points}, function(response){
+                console.log(response);
+            });
             this.destroyGame();
         }
     },
