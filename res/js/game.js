@@ -357,16 +357,16 @@ var Game = {
     },
 
     updateBg: function(){
-        this.canvas.fillStyle = "#DDDDDD";
-        this.canvas.fillRect(0,0,this.w, this.h);
-        return;
-
         if(this.bgTop > this.h){
             this.bgTop = 0;
         }
+
+        if(this.bgTop < 0){
+            this.bgTop = 800;
+        }
         this.canvas.drawImage(this.images["bg"], 0, this.bgTop);
         this.canvas.drawImage(this.images["bg"], 0, this.bgTop - 800);
-        this.bgTop += this.speed / 2;
+        this.bgTop += this.speed * this.delta / 2 ;
     },
 
     updateSpeed: function(){
