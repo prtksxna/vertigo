@@ -385,12 +385,19 @@ var Game = {
         // TODO Fix game over check
         if((this.height + this.h) < this.max_height){
             $("#fall_sound")[0].play();
+
             var leaderboard = new Clay.Leaderboard({id:"score"});
             leaderboard.post({score : this.points}, function(response){
                 console.log(response);
                 leaderboard.show({limit:5}, function(response){
                   console.log(response)
                 });
+
+                var a = new Clay.Achievement({id : "first"});
+                a.award(function(response){
+                    console.log(response);
+                });
+
             });
 
             this.destroyGame();

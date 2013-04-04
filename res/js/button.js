@@ -92,6 +92,35 @@ var Button = function(game,y){
 
         this.game.points += (this.h * 10) + ((this.combo_hits ^ 2) * 10);
         this.destroy();
+
+        // Achievements
+        if(this.game.combo_hits == 5){
+            a = new Clay.Achievement({id:"combo5", noUI: false});
+            a.award(function(response){
+                console.log(response);
+            });
+        }
+
+        if(this.game.combo_hits == 10){
+            a = new Clay.Achievement({id:"combo10", noUI: false});
+            a.award(function(response){
+                console.log(response);
+            });
+        }
+
+        if(this.game.points > 50000){
+            a = new Clay.Achievement({id:"points50k", noUI: false});
+            a.award(function(response){
+                console.log(response);
+            });
+        }
+
+        if(this.game.points > 100000){
+            a = new Clay.Achievement({id:"points100k", noUI: false});
+            a.award(function(response){
+                console.log(response);
+            });
+        }
     }
 
     this.destroy = function(){
