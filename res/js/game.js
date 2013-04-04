@@ -388,7 +388,7 @@ var Game = {
             var leaderboard = new Clay.Leaderboard({id:"score"});
             leaderboard.post({score : this.points}, function(response){
                 console.log(response);
-                leaderboard.show({}, function(response){
+                leaderboard.show({limit:5}, function(response){
                   console.log(response)
                 });
             });
