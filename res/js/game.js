@@ -10,6 +10,7 @@ var Game = {
 
         this.game_started = false;
         this.pause = false;
+        this.is_touch_device = 'ontouchstart' in document.documentElement;
 
         this.setupCanvas();
         this.initImages();
@@ -127,13 +128,11 @@ var Game = {
         this.canvas.font = "30px 'munro_smallregular'";
         this.canvas.textAlign = "center"
 
-        var is_touch_device = 'ontouchstart' in document.documentElement;
-
         if(!!(this.points)){
             this.canvas.fillText("You scored ", 170,130);
             this.canvas.fillText(this.points + " points!", 170,150);
 
-            if(is_touch_device){
+            if(this.is_touch_device){
                 this.canvas.fillText("Tap to Restart", 170,190);
             }else{
                 this.canvas.fillText("Hit Spacebar", 170,190);
@@ -150,7 +149,7 @@ var Game = {
             this.canvas.fillText("Use the same color", 170, 240);
             this.canvas.fillText("To make combos", 170, 270);
 
-            if(is_touch_device){
+            if(this.is_touch_device){
                 this.canvas.fillText("Tap to begin", 170, 330);
                 this.canvas.fillText("Tap edges to control", 170, 360);
             }else{
@@ -229,59 +228,59 @@ var Game = {
         var lr = $(window).width() / 2;
         var game = this;
 
-        $(document).bind("keydown",function(e){
-            switch(e.keyCode){
-            case 37:
-                e.preventDefault();
-                game.event = "left";
-                break;
-            case 39:
-                e.preventDefault();
-                game.event = "right";
-                break;
-            case 32:
-                e.preventDefault();
-                game.playPause();
-                break;
-            case 27:
-                game.backToMenu();
-                break;
-            default:
-                // Do nothing
-            };
-        });
+        if(this.is_touch_device){
+          $(document).bind("mousedown touchstart",function(e){
+              e.preventDefault();
+              if(!game.game_started){;
+                  game.initGame();
+                  return false;
+              }
 
-        $(document).bind("keyup",function(e){
-            game.event = "";
-        });
+              var x = 0;
 
+              if (e.originalEvent.touches){
+                  x = e.originalEvent.touches[0].pageX;
+              }else{
+                  x = e.pageX;
+              }
 
-        // For touch devices
-        $(document).bind("mousedown touchstart",function(e){
-            e.preventDefault();
-            if(!game.game_started){;
-                game.initGame();
-                return false;
-            }
+              if (x > lr){
+                  game.event = "right";
+              }else{
+                  game.event = "left";
+              }
+          });
 
-            var x = 0;
+          $(document).bind("mouseup touchend",function(e){
+              game.event = "";
+          });
+        }else{
+          $(document).bind("keydown",function(e){
+              switch(e.keyCode){
+              case 37:
+                  e.preventDefault();
+                  game.event = "left";
+                  break;
+              case 39:
+                  e.preventDefault();
+                  game.event = "right";
+                  break;
+              case 32:
+                  e.preventDefault();
+                  game.playPause();
+                  break;
+              case 27:
+                  game.backToMenu();
+                  break;
+              default:
+                  // Do nothing
+              };
+          });
 
-            if (e.originalEvent.touches){
-                x = e.originalEvent.touches[0].pageX;
-            }else{
-                x = e.pageX;
-            }
-
-            if (x > lr){
-                game.event = "right";
-            }else{
-                game.event = "left";
-            }
-        });
-
-        $(document).bind("mouseup touchend",function(e){
-            game.event = "";
-        });
+          $(document).bind("keyup",function(e){
+              game.event = "";
+          });
+        }
     },
 
     playPause: function(){
