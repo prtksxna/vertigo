@@ -389,6 +389,11 @@ var Game = {
             leaderboard.post({score : this.points}, function(response){
                 console.log(response);
             });
+
+            leaderboard.show({}, function(response){
+              console.log(response)
+            });
+
             this.destroyGame();
         }
     },
