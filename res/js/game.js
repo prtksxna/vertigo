@@ -288,10 +288,11 @@ var Game = {
 
 
         // Social
+        var points = this.points;
         $("#ic_twitter").bind("click", function(e){
             var screenshot = new Clay.Screenshot( { prompt: false } );
             screenshot.save(function(response) {
-                (new Clay.Twitter()).post( { message: "Playing http://vertigo.clay.io ! Just scored " + this.points + "! Can you beat my score?", picture: response.imageSrc, editable: true } );
+                (new Clay.Twitter()).post( { message: "Playing http://vertigo.clay.io ! Just scored " + points + "! Can you beat my score?", picture: response.imageSrc, editable: true } );
             });
 
         });
@@ -299,7 +300,7 @@ var Game = {
         $("#ic_facebook").bind("click", function(e){
             var screenshot = new Clay.Screenshot( { prompt: false } );
             screenshot.save(function(response) {
-                (new Clay.Facebook()).post( { message: "Playing http://vertigo.clay.io ! Just scored " + this.points + "! Can you beat my score?", picture: response.imageSrc, editable: true } );
+                (new Clay.Facebook()).post( { message: "Playing http://vertigo.clay.io ! Just scored " + points + "! Can you beat my score?", picture: response.imageSrc, editable: true } );
             });
         });
 
