@@ -2,6 +2,12 @@ var Button = function(game,y){
 
     this.placeRandomly = function(){
         this.x = Math.random(1) * (this.game.w - 35);
+        for(var i = 0; i < this.game.buttons.length; i++){
+            var p = this.game.buttons[i];
+            if(this.collidesWith(p)){
+                this.placeRandomly();
+            };
+        }
     }
 
     this.init = function(){

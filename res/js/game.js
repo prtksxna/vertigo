@@ -331,7 +331,7 @@ var Game = {
     },
 
     generateButtons: function(pos){
-        var n = this.w / 35;
+        var n = this.w / 50;
         for(var i = 0; i < n; i++){
             this.buttons.push(new Button(this, Math.random(1)*(pos)));
         }
