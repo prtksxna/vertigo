@@ -129,6 +129,16 @@ var Button = function(game,y){
         delete this;
     };
 
+    this.collidesWith = function(p){
+        var b = this;
+        if((p.y >= b.y && p.y <= (b.y + b.h)) || (b.y >= p.y && b.y <= (p.y + p.h ))){
+            if((p.x >= b.x && p.x <= (b.x + b.w)) || (b.x >= p.x && b.x <= (p.x + p.w ))){
+                return true;
+            }
+        }
+        return false;
+    };
+
     this.update = function(speedDelta){
         // Move the button
         this.y += speedDelta;
@@ -136,11 +146,8 @@ var Button = function(game,y){
 
         // Check for collisions
         var p = this.game.player;
-        var b = this;
-        if((p.y >= b.y && p.y <= (b.y + b.h)) || (b.y >= p.y && b.y <= (p.y + p.h ))){
-            if((p.x >= b.x && p.x <= (b.x + b.w)) || (b.x >= p.x && b.x <= (p.x + p.w ))){
-                b.taken();
-            }
+        if(this.collidesWith(p)){
+            this.taken();
         }
     }
 
