@@ -63,12 +63,26 @@ var Button = function(game,y){
             return false;
         }
 
-//        this.game.canvas.fillStyle = this.color;
-//        this.game.canvas.fillRect(this.x,this.y,this.w,this.h);
+	if(this.is_taken){
+	    if(this.opacity < 0){
+		this.destroy();
+		return false;
+	    }else{
+		this.opacity -= this.game.delta/700;
+		this.y += this.game.delta / 700 * this.jump * 100;
+	    }
+	}
 
+	this.game.canvas.globalAlpha = this.opacity;
         this.game.canvas.drawImage(this.game.images[this.img], this.x, this.y);
+	if(this.is_taken && this.game.combo_hits > 0){
+	    this.game.canvas.fillStyle = this.game.combo_color;
+	    this.game.canvas.font = "30px 'munro_smallregular'";;
+	    this.game.canvas.fillText(this.game.combo_hits + "x", this.x + this.w + 5, this.y + this.h);
+	}
+	this.game.canvas.globalAlpha = 1;
 
-        return this.x
+        return this.x;
     }
 
     this.taken = function(){
@@ -97,7 +111,8 @@ var Button = function(game,y){
         }
 
         this.game.points += (this.h * 10) + ((this.combo_hits ^ 2) * 10);
-        this.destroy();
+//        this.destroy();
+	this.is_taken = true;
 
         // Achievements
         if(this.game.combo_hits == 5){
@@ -136,6 +151,9 @@ var Button = function(game,y){
     };
 
     this.collidesWith = function(p){
+	if(this.is_taken){
+	    return false;
+	}
         var b = this;
         if((p.y >= b.y && p.y <= (b.y + b.h)) || (b.y >= p.y && b.y <= (p.y + p.h ))){
             if((p.x >= b.x && p.x <= (b.x + b.w)) || (b.x >= p.x && b.x <= (p.x + p.w ))){
@@ -163,6 +181,9 @@ var Button = function(game,y){
     this.w = 24;
     this.h = 30;
     this.jump = 0.5;
+
+    this.is_taken = false;
+    this.opacity = 1;
 
     this.placeRandomly();
     this.init();
