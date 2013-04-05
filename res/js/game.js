@@ -281,6 +281,31 @@ var Game = {
               game.event = "";
           });
         }
+
+        $("#ic_twitter").bind("click", function(e){
+            var screenshot = new Clay.Screenshot( { prompt: false } );
+            screenshot.save(function(response) {
+                (new Clay.Twitter()).post( { message: "Playing Vertigo!", picture: response.imageSrc, editable: true } );
+            });
+
+        });
+
+
+        $("#ic_facebook").bind("click", function(e){
+            var screenshot = new Clay.Screenshot( { prompt: false } );
+            screenshot.save(function(response) {
+                (new Clay.Facebook()).post( { message: "Playing Vertigo!", picture: response.imageSrc, editable: true } );
+            });
+        });
+
+        $("#ic_hiscore").bind("click", function(e){
+            var leaderboard = new Clay.Leaderboard({id:"score"});
+            leaderboard.show({limit:10}, function(response){
+                console.log(response)
+            });
+        });
+
+
     },
 
     playPause: function(){
@@ -389,10 +414,6 @@ var Game = {
             var leaderboard = new Clay.Leaderboard({id:"score"});
             leaderboard.post({score : this.points}, function(response){
                 console.log(response);
-                leaderboard.show({limit:5}, function(response){
-                  console.log(response)
-                });
-
                 var a = new Clay.Achievement({id : "first"});
                 a.award(function(response){
                     console.log(response);
