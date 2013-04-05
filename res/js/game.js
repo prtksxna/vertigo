@@ -331,7 +331,12 @@ var Game = {
     },
 
     generateButtons: function(pos){
-        var n = this.w / 50;
+        if(this.points < 200000){
+            var density = (((this.points * 0.0005)/100) * 80) + 30;
+        }else{
+            var density = 110;
+        }
+        var n = this.w / density ;
         for(var i = 0; i < n; i++){
             this.buttons.push(new Button(this, Math.random(1)*(pos)));
         }
