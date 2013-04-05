@@ -66,11 +66,11 @@ var Button = function(game,y){
     }
 
     this.taken = function(){
+        var boost = this.jump + (this.jump * ((this.game.combo_hits * 0.1)));
         if(this.jump < 0){
             this.game.speed = this.jump;
         }else{
-            if(this.game.speed < this.jump){
-                var boost = this.jump + (this.jump * ((this.game.combo_hits * 0.1)));
+            if(this.game.speed < boost){
                 this.game.speed = boost;
             }
         }
