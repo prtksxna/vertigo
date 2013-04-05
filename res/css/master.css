@@ -26,3 +26,10 @@ canvas{
     right: 0;
     padding: 10px;
 }
+
+.hidden{
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    font-family: 'munro_smallregular'
+}
