@@ -68,16 +68,16 @@ var Button = function(game,y){
 		this.destroy();
 		return false;
 	    }else{
-		this.opacity -= this.game.delta/700;
-		this.y += this.game.delta / 700 * this.jump * 100;
+		this.opacity -= this.game.delta/1000;
+		this.y += this.game.delta / 1000 * this.jump * 100;
 	    }
 	}
 
 	this.game.canvas.globalAlpha = this.opacity;
         this.game.canvas.drawImage(this.game.images[this.img], this.x, this.y);
-	if(this.is_taken && this.game.combo_hits > 0){
+	if(this.is_taken && this.img !== "red"){
 	    this.game.canvas.fillStyle = this.game.combo_color;
-	    this.game.canvas.font = "30px 'munro_smallregular'";;
+	    this.game.canvas.font = (this.h * 2) + "px 'munro_smallregular'";;
 	    this.game.canvas.fillText(this.game.combo_hits + "x", this.x + this.w + 5, this.y + this.h);
 	}
 	this.game.canvas.globalAlpha = 1;
