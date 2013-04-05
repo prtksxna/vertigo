@@ -27,9 +27,11 @@ var Game = {
     initImages: function(){
 
         // Background
-        var bg = new Image();
-        bg.src = "res/img/bg.png";
+        var brick = new Image();
+        brick.src = "res/img/brick.png";
 
+        var pipe = new Image();
+        pipe.src = "res/img/pipe.png";
 
         // Logo
         var logo = new Image();
@@ -78,7 +80,8 @@ var Game = {
         red.src = "res/img/red.png"
 
         this.images = {
-            "bg": bg,
+            "brick": brick,
+            "pipe": pipe,
             "logo": logo,
             "p_down_right": p_down_right,
             "p_down_left": p_down_left,
@@ -105,7 +108,8 @@ var Game = {
         this.gravity = 0.0006;
         this.points = 0;
 
-        this.bgTop = 0;
+        this.brickTop = 0;
+        this.pipeTop = 0;
         this.top_button = undefined;
 
         this.height = 300;
@@ -396,16 +400,28 @@ var Game = {
     },
 
     updateBg: function(){
-        if(this.bgTop > this.h){
-            this.bgTop = 0;
+        if(this.brickTop > 800){
+            this.brickTop = 0;
         }
 
-        if(this.bgTop < 0){
-            this.bgTop = 800;
+        if(this.brickTop < 0){
+            this.brickTop = 800;
         }
-        this.canvas.drawImage(this.images["bg"], 0, this.bgTop);
-        this.canvas.drawImage(this.images["bg"], 0, this.bgTop - 800);
-        this.bgTop += this.speed * this.delta / 2 ;
+        this.canvas.drawImage(this.images["brick"], 0, this.brickTop);
+        this.canvas.drawImage(this.images["brick"], 0, this.brickTop - 800);
+        this.brickTop += this.speed * this.delta / 4 ;
+
+        if(this.pipeTop > 800){
+            this.pipeTop = 0;
+        }
+
+        if(this.pipeTop < 0){
+            this.pipeTop = 800;
+        }
+        this.canvas.drawImage(this.images["pipe"], 0, this.pipeTop);
+        this.canvas.drawImage(this.images["pipe"], 0, this.pipeTop - 800);
+        this.pipeTop += this.speed * this.delta / 2 ;
+
     },
 
     updateSpeed: function(){
