@@ -5,8 +5,7 @@ $(window).bind("load",function(e){
 var Game = {
     init: function(id,w,h){
         this.id = "vertigo";
-        this.w = $("#container").width();
-        this.h = $("#container").height();
+        this.fullScreen();
 
         this.game_started = false;
         this.pause = false;
@@ -18,6 +17,11 @@ var Game = {
         this.initMainMenu();
 
         return this;
+    },
+
+    fullScreen: function(){
+        this.w = $("#container").width();
+        this.h = $("#container").height();
     },
 
     initImages: function(){
@@ -282,6 +286,8 @@ var Game = {
           });
         }
 
+
+        // Social
         $("#ic_twitter").bind("click", function(e){
             var screenshot = new Clay.Screenshot( { prompt: false } );
             screenshot.save(function(response) {
@@ -289,7 +295,6 @@ var Game = {
             });
 
         });
-
 
         $("#ic_facebook").bind("click", function(e){
             var screenshot = new Clay.Screenshot( { prompt: false } );
@@ -306,6 +311,9 @@ var Game = {
         });
 
 
+        $(window).resize(function(){
+            game.fullScreen();
+        }).bind(this);
     },
 
     playPause: function(){
