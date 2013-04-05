@@ -25,6 +25,10 @@ var Game = {
     },
 
     initImages: function(){
+	this.colors = {
+	    "#3AB82F": "#23781B",
+	    "#2F7EBB": "#1B4C71"
+	};
 
         // Background
         var brick = new Image();
@@ -385,17 +389,27 @@ var Game = {
     },
 
     updateInterface: function(){
-        this.canvas.fillStyle = "#000";
-        this.canvas.fillRect(0,0,200, 50);
-        this.canvas.fillStyle = "#ffffff"
-        this.canvas.font = "30px 'munro_smallregular'";;
-        this.canvas.fillText(this.points + "pts", 10, 32);
+        this.canvas.fillStyle = "#111111";
+        this.canvas.fillRect(10,10, 200, 50);
+        this.canvas.fillStyle = "#333333";
+        this.canvas.fillRect(15,15, 200, 50);
+        this.canvas.font = "30px 'munro_smallregular'";
+        this.canvas.fillStyle = "#111111";
+        this.canvas.fillText(this.points + "pts", 33, 50);
+        this.canvas.fillStyle = "#ffffff";
+        this.canvas.fillText(this.points + "pts", 30, 47);
 
         if(this.combo_color !== ""){
+            this.canvas.fillStyle = this.colors[this.combo_color];
+            this.canvas.fillRect(240, 10, 150, 50);
             this.canvas.fillStyle = this.combo_color;
-            this.canvas.fillRect(200, 0, 200, 50);
+            this.canvas.fillRect(245, 15, 150, 50);
+
+            this.canvas.fillStyle = this.colors[this.combo_color];
+            this.canvas.fillText(this.combo_hits + "x Combo", 263, 50);
+
             this.canvas.fillStyle = "#ffffff";
-            this.canvas.fillText(this.combo_hits + "x Combo", 210, 32);
+            this.canvas.fillText(this.combo_hits + "x Combo", 260, 47);
         }
     },
 
