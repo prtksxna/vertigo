@@ -127,37 +127,57 @@ var Game = {
         this.canvas.clearRect(0, 0, this.w, this.h); // Clear Canvas
         this.canvas.save();
 
-        this.canvas.fillStyle = "#3a3a3a";
-        this.canvas.strokeStyle = "#FFFFFF";
 
         this.canvas.translate((this.w/2 - 170), 50);
+        this.canvas.fillStyle = "#000000";
+        this.canvas.fillRect(-5,-5,340,400);
+
+        this.canvas.fillStyle = "#3a3a3a";
         this.canvas.fillRect(0,0,340,400);
-        this.canvas.strokeRect(3,3,334,394);
 
         this.canvas.drawImage(this.images["logo"], 45, 45);
 
-        this.canvas.fillStyle = "#FFFFFF"
+        this.canvas.fillStyle = "#000000"
         this.canvas.font = "30px 'munro_smallregular'";
         this.canvas.textAlign = "center"
 
         if(!!(this.points)){
+            this.canvas.fillText("You scored ", 173,133);
+            this.canvas.fillText(this.points + " points!", 173,153);
+
+	    this.canvas.fillStyle = "#FFFFFF"
             this.canvas.fillText("You scored ", 170,130);
             this.canvas.fillText(this.points + " points!", 170,150);
 
             if(this.is_touch_device){
                 this.canvas.fillText("Tap to Restart", 170,190);
             }else{
+		this.canvas.fillStyle = "#000000";
+                this.canvas.fillText("Hit Spacebar", 173,193);
+		this.canvas.fillStyle = "#FFFFFF";
                 this.canvas.fillText("Hit Spacebar", 170,190);
             }
+	    this.canvas.fillStyle = "#000000";
+            this.canvas.fillText("To try again", 173,213);
+	    this.canvas.fillStyle = "#FFFFFF";
             this.canvas.fillText("To try again", 170,210);
         }else{
-            this.canvas.fillText("Collect", 85, 140);
-            this.canvas.fillText("Avoid", 255, 140);
+            this.canvas.fillText("Collect", 83, 138);
+            this.canvas.fillText("Avoid", 253, 138);
+
+	    this.canvas.fillStyle = "#FFFFFF";
+            this.canvas.fillText("Collect", 80, 135);
+            this.canvas.fillText("Avoid", 250, 135);
 
             this.canvas.drawImage(this.images["blue_two"], 55, 155);
             this.canvas.drawImage(this.images["green_two"], 85, 155);
             this.canvas.drawImage(this.images["red"], 240, 160);
 
+	    this.canvas.fillStyle = "#000000";
+            this.canvas.fillText("Use the same color", 173, 243);
+            this.canvas.fillText("To make combos", 173, 273);
+
+	    this.canvas.fillStyle = "#ffffff";
             this.canvas.fillText("Use the same color", 170, 240);
             this.canvas.fillText("To make combos", 170, 270);
 
@@ -165,6 +185,11 @@ var Game = {
                 this.canvas.fillText("Tap to begin", 170, 330);
                 this.canvas.fillText("Tap edges to control", 170, 360);
             }else{
+		this.canvas.fillStyle = "#000000";
+                this.canvas.fillText("Hit spacebar to begin", 173, 333);
+                this.canvas.fillText("Arrow keys to control", 173, 363);
+
+		this.canvas.fillStyle = "#ffffff";
                 this.canvas.fillText("Hit spacebar to begin", 170, 330);
                 this.canvas.fillText("Arrow keys to control", 170, 360);
             }
@@ -208,13 +233,13 @@ var Game = {
         this.canvas.fillStyle = 'rgba(90,90,90,0.5)';
         this.canvas.fillRect(0,0,this.w,this.h);
 
-        this.canvas.fillStyle = "#3a3a3a";
-        this.canvas.strokeStyle = "#FFFFFF";
-
 
         this.canvas.translate((this.w/2 - 170), 50);
+        this.canvas.fillStyle = "#000000";
+        this.canvas.fillRect(-5,-5,340,400);
+        this.canvas.fillStyle = "#3a3a3a";
         this.canvas.fillRect(0,0,340,400);
-        this.canvas.strokeRect(3,3,334,394);
+
 
         this.canvas.drawImage(this.images["logo"], 45, 45);
 
@@ -222,8 +247,14 @@ var Game = {
         this.canvas.font = "30px 'munro_smallregular'";
         this.canvas.textAlign = "center"
 
-        this.canvas.fillText("Game Paused", 170,140);
+	this.canvas.fillStyle = "#000000"
+        this.canvas.fillText("Game Paused", 173,143);
+        this.canvas.fillText("Hit Spacebar to Resume", 173,173);
+        this.canvas.fillText("Esc to go back to menu", 173,193);
 
+
+	this.canvas.fillStyle = "#FFFFFF";
+        this.canvas.fillText("Game Paused", 170,140);
         this.canvas.fillText("Hit Spacebar to Resume", 170,170);
         this.canvas.fillText("Esc to go back to menu", 170,190);
 
