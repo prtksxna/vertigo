@@ -117,7 +117,7 @@ var Button = function(game,y){
 	this.is_taken = true;
 
         // Achievements
-        if(this.game.combo_hits == 5){
+/*        if(this.game.combo_hits == 5){
             a = new Clay.Achievement({id:"combo5", noUI: false});
             a.award(function(response){
                 console.log(response);
@@ -143,7 +143,7 @@ var Button = function(game,y){
             a.award(function(response){
                 console.log(response);
             });
-        }
+        }*/
     }
 
     this.destroy = function(){
