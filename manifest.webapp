@@ -9,5 +9,7 @@
     "name": "Prateek Saxena",
     "url": "http://prtksxna.com"
   },
-  "default_locale": "en"
+  "default_locale": "en",
+  "orientation": ["portrait-primary"],
+  "fullscreen": true
 }
