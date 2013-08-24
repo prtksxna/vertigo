@@ -7,21 +7,6 @@
     <script type="text/javascript" src="res/js/game.js"></script>
     <script type="text/javascript" src="res/js/player.js"></script>
     <script type="text/javascript" src="res/js/button.js"></script>
-
-    <script type="text/javascript">
-      var Clay = Clay || {};
-      Clay.gameKey = "vertigo";
-      Clay.readyFunctions = [];
-      Clay.ready = function( fn ) {
-      Clay.readyFunctions.push( fn );
-//      Clay.options = { debug: true };
-      };
-      ( function() {
-      var clay = document.createElement("script");
-      clay.src = ( "https:" == document.location.protocol ? "https://" : "http://" ) + "clay.io/api/api.js";
-      var tag = document.getElementsByTagName("script")[0]; tag.parentNode.insertBefore(clay, tag);
-      } )();
-    </script>
   </head>
   <body>
     <div class="hidden">
@@ -44,12 +29,6 @@
     </div>
 
     <div id="container"></div>
-    <div id="menu">
-<!--      <img src="res/img/ic_twitter.gif" id="ic_twitter">
-      <img src="res/img/ic_facebook.gif" id="ic_facebook">-->
-      <img src="res/img/ic_hiscore.png" id="ic_hiscore">
-    </div>
-
     <audio height="100" width="100" id="jump_sound" src="res/ogg/jump.ogg">
       <source src="res/ogg/jump.ogg" type="audio/ogg">
     </audio>

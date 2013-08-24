@@ -1,3 +1,13 @@
+window.requestAnimFrame = (function(){
+  return  window.requestAnimationFrame       ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame    ||
+          function( callback ){
+            window.setTimeout(callback, 1000 / 60);
+          };
+})();
+
+
 $(window).bind("load",function(e){
     var k = Game.init();
 });
@@ -326,31 +336,6 @@ var Game = {
         }
 
 
-        // Social
-        var points = this.points;
-        $("#ic_twitter").bind("click", function(e){
-            var screenshot = new Clay.Screenshot( { prompt: false } );
-            screenshot.save(function(response) {
-                (new Clay.Twitter()).post( { message: "Playing http://vertigo.clay.io ! Just scored " + this.points + "! Can you beat my score?", picture: response.imageSrc, editable: true } );
-            }).bind(this);
-
-        }).bind(this);
-
-        $("#ic_facebook").bind("click", function(e){
-            var screenshot = new Clay.Screenshot( { prompt: false } );
-            screenshot.save(function(response) {
-                (new Clay.Facebook()).post( { message: "Playing http://vertigo.clay.io ! Just scored " + this.points + "! Can you beat my score?", picture: response.imageSrc, editable: true } );
-            }).bind(this);
-        }).bind(this);
-
-        $("#ic_hiscore").bind("click", function(e){
-            var leaderboard = new Clay.Leaderboard({id:"score"});
-            leaderboard.show({limit:10}, function(response){
-                console.log(response)
-            });
-        });
-
-
         $(window).resize(function(){
             game.fullScreen();
         }).bind(this);
@@ -400,7 +385,7 @@ var Game = {
     update: function(){
         this.canvas.clearRect(0, 0, this.w, this.h); // Clear Canvas
 
-        this.updateBg();
+//        this.updateBg();
         this.updateSpeed();
         this.updateButtons();
         this.player.react(); // Make player react to event
@@ -486,17 +471,6 @@ var Game = {
         // TODO Fix game over check
         if((this.height + this.h) < this.max_height){
             $("#fall_sound")[0].play();
-
-            var leaderboard = new Clay.Leaderboard({id:"score"});
-            leaderboard.post({score : this.points}, function(response){
-                console.log(response);
-                var a = new Clay.Achievement({id : "first"});
-                a.award(function(response){
-                    console.log(response);
-                });
-
-            });
-
             this.destroyGame();
         }
     },
