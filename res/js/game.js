@@ -361,8 +361,8 @@ var Game = {
         }else{
             var density = 110;
         }
-	var density = 50;
-        var n = this.w / density ;
+//	    var density = 50;
+        var n = Math.sqrt(this.w*this.h) / density ;
         for(var i = 0; i < n; i++){
             this.buttons.push(new Button(this, Math.random(1)*(pos)));
         }
