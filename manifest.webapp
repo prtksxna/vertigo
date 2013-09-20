@@ -1,15 +1,15 @@
 {
   "name": "Vertigo",
   "description": "A vertical scrolling game. Use arrow keys to control the character and collect arrows. Blue and green arrows give a boost, while the red ones throw you down. Try and collect same colored arrows to make combos and get an extra boost on every arrow.",
-  "launch_path": "/index.html",
+  "launch_path": "/vertigo/index.html",
   "icons": {
-    "128": "/res/icons/128.png",
-    "64": "/res/icons/64.png",
-    "60": "/res/icons/60.png",
-    "48": "/res/icons/48.png",
-    "32": "/res/icons/32.png",
-    "30": "/res/icons/30.png",
-    "16": "/res/icons/16.png"
+    "128": "/vertigo/res/icons/128.png",
+    "64": "/vertigo/res/icons/64.png",
+    "60": "/vertigo/res/icons/60.png",
+    "48": "/vertigo/res/icons/48.png",
+    "32": "/vertigo/res/icons/32.png",
+    "30": "/vertigo/res/icons/30.png",
+    "16": "/vertigo/res/icons/16.png"
   },
   "developer": {
     "name": "Prateek Saxena",
