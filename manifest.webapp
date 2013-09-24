@@ -17,5 +17,5 @@
   },
   "default_locale": "en",
   "orientation": ["portrait-primary"],
-  "fullscreen": true
+  "fullscreen": "true"
 }
